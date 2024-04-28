@@ -1,0 +1,74 @@
+\addtocontents{toc}{\protect\addvspace{5pt}}
+\chapter{HASIL DAN PEMBAHASAN}
+
+\hspace{\parindent}
+Pada bab ini, akan diuraikan tentang hasil dan pembahasan penelitian ini, yang meliputi: estimasi parameter model regresi logistik multinomial menggunakan metode PMLE, pengolahan data set dengan regresi logistik multinomial dengan regularisasi $L_1$ dan $L_2$ menggukan algoritma \textit{gradient descent}.
+\section{Estimasi Parameter Model Regresi Logistik Multinomial menggunakan Metode MLE }
+Model regresi logistik multinomial dinyatakan dengan:
+\begin{equation}\label{eqn:pi_k}    
+	\pi_k(X)=Pr(Y=k|X)=\frac{exp(\alpha_k+\beta_k^T X)}{1+\sum_{h=1}^{K-1}exp(\alpha_h+\beta_h^T X)}
+\end{equation}
+Keterangan:\\
+$Pr(Y=k|X_m)$ = peluang kelas-k yang diestimasi dengan observasi ke-m (m=1,2,3,...,M)
+
+dengan menggunakan persamaan \ref{turunanParsial} pada \ref{logLikelihood}:
+\begin{flalign}\label{turunanParsialLogLikehood1}
+	\frac{\partial\left( \ln{L(y;\beta)} \right)}{\partial\beta} &= \frac{
+		\partial\left(
+		\sum_{i = 1}^{n}\left\{ \sum_{j = 1}^{J - 1}{y_{ij}\left( \alpha_{j} + \beta_{j}^{T}x_{i} \right)
+			- \ln\left\lbrack 1 + \sum_{j = 1}^{J - 1}{\exp\left( \alpha_{j} + \beta_{j}^{T}x_{i} \right)} \right\rbrack} \right\}
+		\right)
+	}{\partial\beta_{jk}} \nonumber\\
+	&=\frac{
+		\partial\left(
+		\sum_{i = 1}^{n} \sum_{j = 1}^{J - 1}{y_{ij}\left( \alpha_{j} + \beta_{j}^{T}x_{i} \right)}\right)
+	}{\partial\beta_{jk}}
+	- \frac{\partial\left(\sum_{i=1}^{n}\ln\left\lbrack 1 + \sum_{j = 1}^{J - 1}{\exp\left( \alpha_{j} + \beta_{j}^{T}x_{i} \right)} \right\rbrack
+		\right)
+	}{\partial\beta_{jk}}
+\end{flalign}
+karena
+\begin{flalign}
+	\sum_{j = 1}^{J - 1}{y_{ij}\left( \alpha_{j} + \beta_{j}^{T}x_{i} \right)} &=
+	\sum_{j = 1}^{J - 1}{y_{ij}\left( \alpha_{j} + \sum_{k=1}^{p}\beta_{jk} x_{ik} \right)} \\
+	& = \sum_{j = 1}^{J - 1}{\left( y_{ij}\alpha_{j} + \sum_{k=1}^{p} y_{ij}\beta_{jk} x_{ik} \right)}
+\end{flalign}
+Maka dengan menggunakan turunan parsial terhadap $\beta_{jk}$ didapat,
+\begin{flalign}
+	\frac{\partial\left(\sum_{j = 1}^{J - 1}{y_{ij}\left( \alpha_{j} + \beta_{j}^{T}x_{i} \right)}\right)}{\partial\beta_{jk}}
+	&= \frac{\partial\left( \sum_{j = 1}^{J - 1}{\left( y_{ij}\alpha_{j} + \sum_{k=1}^{p} y_{ij}\beta_{jk} x_{ik} \right)} \right)}{\partial\beta_{jk}} \nonumber\\
+	&= y_{ik} x_{ik}
+\end{flalign}
+sehingga persamaan \ref{turunanParsialLogLikehood1} menjadi
+\begin{flalign}
+	\frac{\partial\left( \ln{L(y;\beta_{jk})} \right)}{\partial\beta_{jk}} &= \sum_{i  = 1}^{n} y_{ij}x_{ik}
+	- \frac{\exp\left(\alpha_{j} + \beta_{j}^{T}x_{i}\right) }{1 + \sum_{j = 1}^{J - 1}{\exp\left( \alpha_{j} + \beta_{j}^{T}x_{i} \right)}}
+	x_{ik}
+	\nonumber \\
+	&=\sum_{i  = 1}^{n} y_{ij}x_{ik} - \left\lbrack\pi_j(x_i) \right\rbrack x_{ik}	\nonumber\\
+	&= \sum_{i  = 1}^{n}\left\lbrack y_{ij} - \pi_j(x_i) \right\rbrack x_{ik}
+\end{flalign}
+\begin{flalign}\label{turunanLLBeta}
+	\frac{\partial\left( \ln{L(y;\beta)} \right)}{\partial\beta} &= x^T \left(y - \pi \right)
+\end{flalign}
+\section{Estimasi Parameter Model Regresi Logistik Multinomial menggunakan Metode LASSO dan Ridge}
+\subsection{Menggunakan Metode LASSO}
+Pada PMLE dengan LASSO, mencari nilai minimum dari fungsi negatif \textit{Log-Likelihood} dijumlahkan dengan hasil kali norma $\beta$ terhadap ruang $L_1$ dan kekuatan regularisasi $(\lambda)$ yang dapat ditulis seperti persamaan \ref{objektifPenalty}.\\
+Untuk mencari nilai minimum tersebut, akan dilakukan differensiasi terhadap parameter model Regresi Logistik $(\beta)$ seperti pada persamaan \ref{turunanParsial2}. Dengan mengsubstitusikan \ref{turunanParsial} 
+
+
+%\begin{flalign}
+%\end{flalign}
+% \begin{equation}
+	%     \begin{split}
+		%         g_k(X) & = ln\frac{\pi_k(X)}{\pi_K(X)} \\
+		%         & = \alpha_k + \beta_k^T X
+		%     \end{split}    
+	% \end{equation}
+\lipsum[2-9]
+\section{Pembahasn 2}
+\lipsum[10-16]
+\section{Pembahsan 3}
+\lipsum[17-20]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\cleardoublepage

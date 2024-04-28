@@ -1,0 +1,38 @@
+\addtocontents{toc}{\protect\addvspace{5pt}}
+\pagestyle{plain}
+\chapter{PENDAHULUAN}
+\thispagestyle{empty}
+\onehalfspacing
+
+\section{Latar Belakang}
+\textit{Maximum Likelihood Estimation} (MLE) merupakan metode umum yang digunakan untuk mengestimasi parameter dari regresi logistik. MLE bertujuan untuk mendapatkan nilai estimator parameter yang optimal dengan memaksimalkan fungsi likelihood. Metode ini merupakan metode yang populer dalam ilmu statistika untuk mengestimasi parameter distribusi probabilitas berdasarkan data yang diamati. Regresi logistik dengan variable dependen yang memiliki dua kategori nominal dinamakan regresi logistik biner, sedangkan regresi logistik dengan variabel dependen yang memiliki lebih dari dua kategori nominal dinamakan regresi logistik multinomial.
+
+Namun, regresi logistik memiliki beberapa keterbatasan, diantaranya tidak boleh ada multikolinearitas yakni korelasi yang kuat antar variabel prediktor. Malau dkk. \citep*{Malau2023} menunjukkan bahwa regresi logistik dapat mengalami overfitting ketika terdapat kombinasi linear antar variabel independen dan ketika model menunjukkan performa baik pada data latih namun buruk pada data uji. Ini menunjukkan adanya korelasi antara multikolinearitas dan overfitting dalam regresi logistik. Multikolinearitas dapat memengaruhi stabilitas model dengan membuat matriks analisis regresi menjadi singular, mengakibatkan ketidakstabilan nilai estimasi. Sementara itu, overfitting terjadi karena kompleksitas model yang berlebihan. Stabilitas model regresi logistik mengacu pada kemampuan model untuk mempertahankan kinerjanya pada data uji yang belum pernah dilihat sebelumnya. Sementara itu, Model yang terlalu kompleks cenderung tidak dapat digeneralisasi pada data baru yang tidak memiliki pola atau karakteristik yang sebanding atau konsisten. Oleh karena itu, penanganan multikolinearitas dan overfitting menjadi penting dalam pengembangan model regresi logistik yang stabil dan dapat diandalkan. Firth \citep*{Firth1993} mengusulkan Metode Penalized Maximum Likelihood Estimation dapat digunakan untuk mengatasi hal tersebut. Metode ini melibatkan penambahan penalti pada fungsi likelihood yang digunakan dalam estimasi parameter.
+
+\textit{Penalized Maximum Likelihood Estimation} (PMLE) adalah sebuah pendekatan statistik yang digunakan untuk mengatasi masalah kompleksitas model dalam analisis regresi. PMLE membantu mengontrol kompleksitas model dengan menerapkan penalti pada koefisien regresi, yang pada gilirannya membantu mencapai keseimbangan yang lebih baik, sehingga menghasilkan model yang lebih stabil dan generalisasi yang lebih baik pada data yang tidak terlihat sebelumnya. \citep*{Lee2020}
+
+Untuk mengestimasi parameter MLE dapat dilakukan dengan beberapa pendekatan, diantaranya metode Newton-Raphson. Akan tetapi, Metode Newton-Raphson memiliki beberapa permasalahan seperti ketergantungan pada titik awal yang dekat dengan solusi, serta sensitivitas terhadap pemilihan titik awal yang tepat. Untuk mengatasi ini, algoritma \textit{gradient descent} menjadi solusi yang potensial. Algoritma \textit{gradient descent} dapat menyelesaikan masalah ketergantungan pada titik awal dengan lebih baik karena tidak memerlukan titik awal yang presisi. Selain itu, sensitivitas terhadap pemilihan titik awal juga bisa diatasi dengan lebih baik menggunakan algoritma \textit{gradient descent} karena metode ini lebih adaptif dan fleksibel dalam menemukan solusi tanpa bergantung secara krusial pada titik awal yang diberikan. Adaptif pada Algoritma \textit{gradient descent} merujuk pada metode optimisasi yang menyesuaikan dengan laju pembelajaran (learning rate) berdasarkan karakteristik data dan proses optimisasi,  memungkinkan penemuan solusi yang lebih stabil bahkan dengan variasi besar pada titik awal, yang merupakan kelemahan yang umum pada metode Newton-Raphson.
+
+Dalam konteks optimisasi numerik, tujuan utama algoritma \textit{gradient descent} adalah untuk menemukan nilai minimum (atau maksimum) dari suatu fungsi matematis. Prosesnya dimulai dari titik awal yang dipilih, dan kemudian nilai titik tersebut diperbarui secara iteratif dengan langkah-langkah yang proposional terhadap negatif gradien dari fungsi tersebut. Dengan kata lain, jika gradien menunjukkan arah di mana fungsi meningkat, maka langkah-langkah yang diambil oleh algoritma \textit{gradient descent} akan berlawanan arah untuk mengurangi nilai fungsi. Beberapa varian dari algoritma \textit{gradient descent} yang menggunakan teknik adaptif antara lain adalah AdaGrad, Adadelta, RMSprop, Adam, dan Nadam.
+
+Penelitian ini juga memiliki kontribusi terhadap pengembangan metode statistik. Penerapan PMLE dengan algoritma \textit{gradient descent} dalam analisis regresi logistik multinomial adalah bagian dari perkembangan metode statistik yang terus berlanjut untuk meningkatkan kualitas analisis data. Hal ini dapat memotivasi penelitian lebih lanjut dalam pengembangan teknik statistik yang lebih canggih.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Rumusan Masalah}
+\noindent Berdasarkan uraian dari latar belakang penelitian ini, MLE merupakan metode umum yang digunakan untuk mengestimasi parameter dari regresi logistik. Namun, regresi logistik memiliki beberapa batasan, diantaranya tidak adanya gejala multikolinearitas. Firth \citep*{Firth1993} mengusulkan sebuah estimator likelihood yang dikenai penalti dan telah terbukti mengurangi masalah tersebut yang dikenal sebagai PMLE. Untuk mengestimasi parameter MLE ataupun PMLE dapat dilakukan dengan beberapa pendekatan salah satunya menggunakan metode Newton-Raphson. Akan tetapi, Metode Newton-Raphson memiliki beberapa permasalahan seperti ketergantungan pada titik awal yang dekat dengan solusi, serta sensitivitas terhadap pemilihan titik awal yang tepat.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Batasan Masalah}
+\noindent Adapun batasan masalah dari penelitian ini adalah sebagai berikut:
+\begin{enumerate}
+	\item Penelitian ini akan menggunakan \textit{penalized gradient descent} dengan regularisasi $L_1$ (LASSO) dan $L_2$ (Ridge)
+	\item Penelitian ini akan mengimplementasikan metode MLE dan PMLE \textit{gradient descent} pada model regresi logistik multinomial dengan menggunakan bahasa pemrograman Python
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\section{Tujuan Penelitian}
+\noindent Adapun tujuan dari penelitian ini adalah mengestimasi parameter dan melakukan perbandingan performa pada model regresi logistik multinomial menggunakan metode MLE dan PMLE dengan algoritma \textit{gradient descent}
+
+\section{Manfaat Penelitian}
+\noindent Adapaun manfaat dari penelitian ini adalah mendorong perkembangan metode statistik dengan menggabungkan MLE dan \textit{penalized gradient descent} berpotensi menginspirasi penelitian lebih lanjut dalam pengembangan teknik statistik yang lebih canggih

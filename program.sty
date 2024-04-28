@@ -1,0 +1,197 @@
+\usepackage[asymmetric]{geometry}
+\usepackage{natbib}
+\usepackage{multirow}
+\geometry{
+	paper=a4paper,
+	twoside=true,
+	left=4cm,
+	right=2.5cm,
+%	 outer=4cm,
+%	 inner=2.5cm,
+	top=3cm,
+	bottom=3cm,
+	marginpar=0mm,
+	% bindingoffset=-10mm
+}
+
+\setlength{\oddsidemargin}{15.5pt}
+\setlength{\evensidemargin}{15.5pt}
+\pagestyle{plain}
+%\oddsidemargin 0mm
+%\hoffset 0mm
+% \evensidemargin 4cm
+\usepackage[utf8]{inputenc}
+\usepackage[bahasa]{babel}
+\usepackage{graphicx}
+\usepackage{graphics}
+\usepackage{times}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{longtable}
+\usepackage[labelsep=space]{caption}
+\usepackage{amsthm}
+\usepackage{algorithmic}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{placeins}
+\usepackage{fancyhdr}
+\usepackage{titletoc}
+\usepackage[titles]{tocloft}
+\usepackage{ragged2e}
+\usepackage{etoolbox}
+\usepackage[export]{adjustbox}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{lipsum}
+\usepackage{setspace}
+\usepackage[titles]{tocloft}
+
+\renewcommand{\cftdot}{}
+\renewcommand{\@tocrmarg}{6em}
+% \def\@pnumwidth{2in}
+
+\setcitestyle{authoryear,open={(},close={)}, aysep={,}}
+
+%Format Tabel
+\usepackage[utf8]{inputenc}
+\captionsetup[table]{labelsep=space, 
+         justification=raggedright, singlelinecheck=off, skip=0pt, format=hang}
+\usepackage{threeparttable}
+
+%Format TIKZ
+\usepackage{tikz}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+\usepackage[export]{adjustbox}
+\usepackage{pgfplots}
+\usepackage{tikz-3dplot}
+\pgfplotsset{compat=1.12}
+\usepgfplotslibrary{fillbetween}
+\usetikzlibrary{matrix,shapes,arrows,positioning,chains,calc}
+
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=2cm, minimum height=1cm,text centered, text width=2cm, draw=black, fill=white!30]
+\tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=2.5cm, minimum height=1cm, text centered, text width=2.5cm, draw=black, fill=white!30]
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, text width=8cm, draw=black, fill=white!30]
+\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=white!30]
+\tikzstyle{terminal} = [circle, minimum width=0.5cm, minimum height=0.5cm,text centered, text width=0.5cm, draw=black, fill=white!30]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+\tolerance=100
+\emergencystretch=\maxdimen
+\hyphenpenalty=1000000
+\hbadness=1000000
+
+%Format Daftar Isi
+	\titlecontents{chapter}
+	[5em] %5.3
+	{}{\contentslabel[\vspace{0.1cm}\normalsize\bfseries\textsc{\renewcommand{\chaptername}{BAB}\normalsize\bfseries\chaptername}~\thecontentslabel]{6.8em}\hspace{-3em}\textbf}%\thecontentslabel
+	{\hspace{-6.8em}\textbf}% unnumbered chapters
+	{\textbf{\titlerule*[0pc]{} \contentspage}}
+	\setlength{\cftsecindent}{2.2em}
+	\setlength{\cftsubsecindent}{4.4em}
+
+%Format Daftar Lampiran
+\newcommand{\listappendixname}{List of Appendices}
+\newlistof{appendix}{app}{\listappendixname}
+\setcounter{appdepth}{2}    
+\renewcommand{\theappendix}{\arabic{appendix}.}
+\renewcommand{\cftappendixpresnum}{Lampiran\space}
+\setlength{\cftbeforeappendixskip}{0cm}
+\setlength{\cftappendixnumwidth}{1in}
+\setlength{\headheight}{15pt}
+
+%Format Lampiran
+\newcommand{\myappendix}[1]{%
+	\refstepcounter{appendix}%
+	\section*{\normalfont Lampiran \theappendix\space #1}%
+	\addcontentsline{app}{appendix}{\protect\numberline{\theappendix}#1}%
+	\par
+}
+
+%Format Judul Chapter, Section, Subsection	
+	\titleformat{\chapter}[hang]{\centering\normalsize\bfseries\uppercase}{}{1em}{}
+	\titlespacing*{\chapter}{0pt}{-1em}{1\parskip}
+
+\titleformat{\section}[hang]
+{\normalfont\bfseries}
+{\makebox[0.5in][l]{\thesection}} % incorrect indent if section > 9
+{0pt}
+{}
+
+\titlespacing{\section}{0pt}{5pt}{5pt}
+
+	\titleformat{\subsection}[hang]{\normalfont\bfseries\fontsize{11}{15}}{\makebox[0.5in][l]{\thesubsection}}{0em}{}
+	\titlespacing{\subsection}{0pt}{5pt}{5pt}
+	
+	\titlespacing{\paragraph}{0pt}{5pt}{5pt}
+
+%Format Caption	
+	\titlelabel{\thetitle\quad}
+	\renewcommand{\thechapter}{\arabic{chapter}}
+	\renewcommand{\thesection}{\arabic{chapter}.\arabic{section}}
+	\renewcommand{\theequation}{\arabic{chapter}.\arabic{equation}}  
+	\renewcommand{\thetable}{\arabic{chapter}.\arabic{table}}
+	\renewcommand{\thefigure}{\arabic{chapter}.\arabic{figure}}
+%Format Daftar Pustaka (Biblio)
+\makeatletter 
+\renewcommand\@biblabel[1]{}
+\makeatother
+\parindent 0cm
+\parskip 0.1cm
+\renewcommand{\bibname}{DAFTAR PUSTAKA}
+
+%Format Blok Definisi, Teorema
+\theoremstyle{definition}
+\newtheorem{definisi}{Definisi}[chapter]
+\renewcommand{\thedefinisi}{\arabic{chapter}.\arabic{definisi}}
+\newtheorem{lemma}[definisi]{Lemma}
+%\renewcommand{\thelemma}{\arabic{chapter}.\arabic{lemma}}
+\newtheorem{teorema}[definisi]{Teorema}
+%\renewcommand{\theteorema}{\arabic{chapter}.\arabic{teorema}}
+\newtheorem{contoh}[definisi]{Contoh} 
+%\renewcommand{\thecontoh}{\arabic{chapter}.\arabic{contoh}}
+\newtheorem{akibat}[definisi]{Akibat} 
+%\renewcommand{\theakibat}{\arabic{chapter}.\arabic{akibat}}
+\newtheorem{proposisi}[definisi]{Proposisi} 
+%\renewcommand{\theproposisi}{\arabic{chapter}.\arabic{proposisi}}
+\newtheorem{catatan}[definisi]{Catatan} 
+%\renewcommand{\thecatatan}{\arabic{chapter}.\arabic{catatan}}
+
+%Format Paragraf Bukti, Solusi
+\newenvironment{pro}{\paragraph{Bukti:}}{\qed\\}
+\newenvironment{sol}{\paragraph{Solusi:}}{\qed\\}
+
+%Paragraph Indentation
+\setlength{\parindent}{0.5in}
+%\setlength{\hangindent}{1em} 
+
+%Paragraph Spacing
+\setlength{\parskip}{0.2em}
+
+%Listing
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{kalkhuluqs}{
+	backgroundcolor=\color{white},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=true,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=none,                    
+	numbersep=2pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=true, 
+	tabsize=5
+}
+\lstset{style=kalkhuluqs}

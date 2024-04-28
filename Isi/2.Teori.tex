@@ -1,0 +1,556 @@
+\addtocontents{toc}{\protect\addvspace{5pt}}
+
+
+\chapter{TINJAUAN PUSTAKA}
+\thispagestyle{empty}
+\onehalfspacing
+
+\hspace{\parindent}\lipsum[2]
+
+
+\section{Regresi Logistik}
+Regresi Logistik adalah regresi dengan variabel respon berskala kategorik
+(nominal atau ordinal). Regresi logistik terbagi atas regresi logistik biner, regresi
+logistik multinomial, serta regresi logistik ordinal. Regresi logistik biner adalah
+regresi logistik dengan variabel respon berskala nominal dua kategori. Regresi
+logistik multinomial adalah regresi logistik dengan variabel respon berskala
+nominal lebih dari dua kategori. Regresi logistik ordinal adalah regresi logistik
+dengan variabel respon berskala ordinal.
+
+
+\section{Regresi Logistik Biner}
+Regresi logistik biner adalah teknik statistik yang umum digunakan dalam
+berbagai bidang, termasuk penelitian medis, epidemiologi, dan ilmu sosial.
+Metode ini sangat cocok untuk menganalisis variabel respons biner, di mana
+hasilnya hanya bisa "ya" atau "tidak", seperti kehadiran atau ketiadaan penyakit
+atau keberhasilan atau kegagalan suatu peristiwa. Ini memungkinkan peneliti
+untuk memodelkan hubungan antara satu atau lebih variabel prediktor dan
+probabilitas hasil biner.
+
+Regresi logistik biner melibatkan pemodelan logaritma natural dari
+peluang hasil biner. Fungsi logistik, juga dikenal sebagai fungsi sigmoid,
+mengubah kombinasi linear variabel prediktor menjadi nilai probabilitas antara 0
+dan 1. Persamaan yang biasanya digunakan dalam regresi logistik biner telah
+didokumentasikan dengan baik dalam berbagai buku teks statistik dan artikel
+jurnal, memberikan dasar yang kuat bagi peneliti untuk mengaplikasikannya
+\citep*{Shedriko2021}.
+
+Menurut Hosmer \& Lemeshow \citep*{Hosmer2000}, persamaan regresi logistik adalah
+sebagai berikut:
+\begin{equation}
+    \label{eqn:regresiLogistik}
+    Pr(Y=1|X=x) = \pi(x) = \frac{1}{1+e^{-g(x)}}
+\end{equation}
+Dengan:
+\begin{flalign}
+    \label{eqn:regresi}
+    g(x) &=\beta_0 + \beta_1 x_1 + \beta_2 x_2 + \dots + \beta_p x_p\\
+    &= \beta_0 + \sum_{i=1}^{p} \beta_i x_i
+\end{flalign}
+Dimana
+\begin{conditions*}
+    Pr(Y=1 | X=x) & \text{kelas positif yang diestimasi}\\
+    \beta_0 & \text{konstanta} \\
+    \beta_i & \text{koefisien parameter variabel prediktor ke-i} (i=1,2,3,\dots,p) \\
+    x_i & \text{variabel prediktor ke-i}
+\end{conditions*}
+
+\section{Regresi Logistik Multinomial}
+Menurut Agresti \cite{Agresti2013}. Model regresi logistik multinomial dinyatakan dengan:
+
+\begin{equation}\label{regresiLogistikMultinomial}
+    \pi_k(X) = Pr(Y=k | X) = \frac{exp(\alpha_k+\beta_k^T X)}{1+\sum_{h=1}^{K-1} exp(\alpha_h + \beta_h^T X) }
+\end{equation}
+Dimana
+\begin{conditions*}
+    Pr(Y=k|X_m) & peluang kelas-k yang diestimasi dengan observasi ke-m \\
+    \alpha & konstanta \\
+    \beta_i & koefisien parameter variabel prediktor ke-i (i=1,2,3,\dots,n)\\
+    X_{mi} & variabel prediktor ke-i pada observasi ke-m \\
+\end{conditions*}
+
+
+\section{\emph{Log Odds} atau Logit}
+Logit merupakan log natural $(\ln)$ dari \emph{odds}.
+Dimana \emph{odds} merupakan peluang kejadian sukses dibandingkan dengan peluang gagal.
+Secara umum fungsi logit variabel respon ke-\emph{j} pada variabel prediktor ke-\emph{i} dinyatakan
+sebagai berikut:
+\begin{flalign}\label{logit}
+    \ln\left(\frac{ \pi_j(x)}{\pi_J(x)}\right) &= \alpha_j +\beta_{j1} x_1 + \beta_{j2} x_2 + \dots + \beta_{jp} x_p  \nonumber\\
+    &= \alpha_j + \beta_j^T x, & j=1, 2, \dots, J-1
+\end{flalign}
+Persamaan \ref{logit} dapat ditulis ulang sebagai:
+\begin{flalign}\label{pi_j}
+    \frac{ \pi_j(x)}{\pi_J(x)} &= \exp{\alpha_j + \beta_j^T x} \nonumber\\
+    \pi_j(x) &= \pi_J(x) \exp{\alpha_j + \beta_j^T x}
+\end{flalign}
+Keterangan:
+\begin{conditions*}
+    x_i & vektor yang memuat nilai-nilai pengamatan ke-i dari variabel prediktor ke-j\\
+    \pi_j(x_i) & peluang kategori respon ke-j pada variabel prediktor ke-i\\
+    g_j(x_i) & fungsi logit variabel respon untuk kategori ke-\emph{j} pada variabel prediktor ke-\emph{i} \\
+    \beta_{jk} & koefisien model kategori ke-\emph{j} variabel prediktor ke-\emph{k} \\
+    x_{ki} & nilai variabel prediktor ke-\emph{k} pengamatan ke-\emph{i}\\
+\end{conditions*}
+
+Karena $\pi_j(x)=P(Y=j | x)$ dengan $x$ merupakan variabel prediktor dan $\sum_{j} \pi_j(x)=1 $,
+maka ,
+\begin{flalign}
+\pi_J(x) &= 1 - \sum_{j=1}^{J-1} \pi_j(x) \nonumber\\
+\pi_J(x) &= 1 - \sum_{j=1}^{J-1} {\pi_J(x) \exp{(\alpha_j + \beta_j^T x)}} \nonumber\\
+\pi_J(x) &= 1 - \pi_J(x) \sum_{j=1}^{J-1} {\exp{(\alpha_j + \beta_j^T x)}} \nonumber\\
+\pi_J(x) + \pi_J(x) \sum_{j=1}^{J-1} {\exp{(\alpha_j + \beta_j^T x)}} &= 1 \nonumber\\
+\pi_J(x) \left( 1 + \sum_{j=1}^{J-1} {\exp{(\alpha_j + \beta_j^T x)}} \right) &= 1 \nonumber\\
+\pi_J(x) &= \frac{1}{1+\sum_{j=1}^{J-1} {\exp{(\alpha_j + \beta_j^T x)}}}
+\end{flalign}
+
+\begin{definisi}
+    Asumsikan $\pi_j(x) = P(Y=j|x)$
+\end{definisi}
+
+\section{Maximum Likelihood Estimation}
+\begin{definisi}
+    Misalkan \(y_{1},\ y_{2},\ \ldots,\ y_{m}\) merupakan sebuah
+    sampel acak berukuran m dari fungsi densitas peluang kontinu
+    \(f_{m}(y;\beta)\) dimana adalah parameter yang tidak diketahui. Fungsi
+    \emph{likelihood},
+
+
+\begin{equation}\label{fungsiLikelihood}
+    L(y;\ \beta) = \prod_{m = 1}^{M}{f_{m}(y;\beta)}
+\end{equation}
+
+
+Menurut Agresti\citep*{Agresti2013}, fungsi \emph{likelihood} pada regresi
+logistik multinomial dengan
+\(f_{m}(y;\beta) = \prod_{k = 1}^{K}{\pi_{k}\left( X_{m} \right)^{y_{mk}}}\)
+dan \(\pi_{k}\left( X_{m} \right)^{y_{mk}}\) merupakan peluang bahwa
+observasi ke-\(k\) memiliki kelas \(y_{k}\) berdasarkan variabel
+\(X_{m}\) dan parameter model (\(\beta\)) seperti berikut:
+
+\begin{equation}\label{likelihoodMultinomial}
+    L(y;\beta) = \prod_{m = 1}^{M}{\prod_{k = 1}^{K}{\pi_{k}\left( X_{m} \right)^{y_{mk}}}}\\
+\end{equation}
+Dan fungsi \emph{log likelihood}-nya:\\
+\begin{flalign} \label{logLikelihood}
+    \ln{L(y;\beta)} &= \sum_{m = 1}^{M}{\sum_{k = 1}^{K}{y_{mk}\ln\left( \pi_{k}\left( X_{m} \right) \right)}} \nonumber\\
+    &= \sum_{m = 1}^{M}\left\{ \sum_{k = 1}^{K - 1}{y_{mk}\left( \alpha_{k} + \beta_{k}^{T}X_{m} \right) - \ln\left\lbrack 1 + \sum_{k = 1}^{K - 1}{\exp\left( \alpha_{k} + \beta_{k}^{T}X_{m} \right)} \right\rbrack} \right\}
+\end{flalign}
+
+Pada regresi logistik, estimasi parameter (\(\beta)\) didapatkan dengan memaksimalkan fungsi \emph{log-likelihood} nya. Karena fungsi logaritma natural adalah fungsi naik, sehingga untuk mencari nilai maksimum dari fungsi \emph{log-likelihood} dapat ditentukan dengan turunan pertama dari fungsi \emph{log-likelihood} terhadap \(\beta\) sama dengan nol, atau ditulis sebagai:
+\begin{equation}\label{turunanParsial}
+    \frac{\partial\left( \ln{L(y;\beta)} \right)}{\partial\beta} = 0\\
+\end{equation}
+
+\end{definisi}
+
+Multikolinieritas diperkenalkan Allen \& Frisch\citep*{Allen1935}.
+Multikolinieritas memperlihatkan adanya hubungan yang linier dengan
+tingkat sempurna di antara variabel-variabel prediktor dalam model
+regresinya. Multikolinieritas yaitu kondisi terjadi korelasi yang sangat
+kuat antara variabel prediktor (\(X\)) yang dilibatkan dalam pembangunan
+model regresi linier. Kolinieritas artinya hubungan linier tunggal,
+adapun multikolinieritas yaitu adanya lebih dari satu hubungan linier
+yang hampir sempurna. Pada penerapannya sering tidak dibedakan baik satu
+hubungan ataupun lebih di pergunakan penamaan multikolinieritas.
+
+Multikolinieritas memiliki banyak dampak, yaitu:
+
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+Estimasi koefisien regresi yang tidak akurat.
+\item
+Standar kesalahan yang terlalu tinggi pada estimasi koefisien regresi.
+\item
+Pengujian t yang terdegradasi dan interval kepercayaan yang lebih
+lebar untuk pengujian signifikansi koefisien regresi.
+\item
+Ketidaksignifikan palsu yang ditentukan oleh nilai-nilai p.
+\item
+Penurunan dalam prediktabilitas model.
+\end{enumerate}
+
+Menurut Young (Young, 2017), Salah satu ukuran untuk menguji efek
+multikolineritas dengan \emph{Variance Inflation Factor}s (VIF). Nilai
+VIF dihitung dengan persamaan yaitu:
+
+%
+\begin{equation}\label{VIF}
+    VIF_{j} = \frac{1}{1 - R_{j}^{2}}
+\end{equation}
+
+Dimana \(R_{j}^{2}\) merupakan koefisien determinasi yang diperoleh
+dengan melakukan regresi \(x_{j}\) terhadap variabel yang tersisa.
+Aturan umumnya adalah bahwa jika \(VIF_{j} = 1\), maka tidak ada
+multikolinieritas. jika \(1 < VIF_{j} < 5\), maka kemungkinan terdapat
+multikolinieritas yang sedang. Dan jika \(VIF_{j} \geq 5\), maka
+terdapat multikolinieritas yang kuat.
+
+\section{Koefisien Determinasi}
+Dalam regresi logistik multinomial, koefisien determinasi atau
+\emph{pseudo-R-squared} yang digunakan adalah koefisien determinasi Cox
+dan Snell, Nagelkerke, dan McFadden.
+
+Nilai-nilai ini menunjukkan bahwa variasi data variabel prediktor dapat
+menjelaskan variasi data variabel respon, sisa dari 100\% menunjukkan
+bahwa variasi variabel respon dijelaskan oleh variabel lain di luar
+variabel prediktor yang berada pada model
+%
+\section{Regularisasi}
+\subsection{Regularisasi $L_1$ atau LASSO (\emph{Least Absolute Shrinkage and Selection Operator})}
+Regularisasi \(L_{1}\), juga dikenal sebagai Regularisasi LASSO (Least
+Absolute Shrinkage and Selection Operator), menambahkan istilah hukuman
+ke dalam fungsi kerugian yang sebanding dengan nilai absolut koefisien
+model. Metode ini mengecilkan beberapa koefisien menjadi tepat nol, yang
+efektif melakukan seleksi pada variabel prediktor. Istilah
+regularisasi\(\ L_{1}\) direpresentasikan sebagai:
+
+\begin{equation}\label{penaltyL1}
+    Penalty\left( \beta_{i},\ \lambda \right) = \lambda\sum_{i = 1}^{n}\left| \beta_{i} \right|
+\end{equation}
+
+Di sini, \(\lambda\) mengontrol kekuatan regularisasi, dan \(\beta_{i}\)
+adalah koefisien model yang terkait dengan variabel prediktor\citep*{Hastie2009}.
+
+%
+\subsection{Regularisasi $L_2$ atau Ridge}
+Regularisasi \(L_{2}\), juga dikenal sebagai Regularisasi Ridge,
+menambahkan istilah hukuman ke dalam fungsi kerugian yang sebanding
+dengan kuadrat koefisien model. Metode ini tidak memaksakan koefisien
+model untuk menjadi tepat nol, tetapi mengecilkan mereka menuju nol.
+Istilah regularisasi \(L_{2}\) direpresentasikan sebagai:
+
+\begin{equation}\label{penaltyL2}
+    Penalty\left( \beta_{i},\lambda \right) = \lambda\sum_{i = 1}^{n}\beta_{i}^{2}
+\end{equation}
+Di sini, $\lambda$ mengontrol kekuatan regularisasi, dan \(\beta_{i}\) adalah
+koefisien model yang terkait dengan variabel prediktor\citep*{Bishop2006}.
+
+\section{Algoritma \emph{Gradient Descent}}
+Dalam matematika, algoritma \emph{gradient descent} digunakan untuk
+menemukan minimum atau maksimum suatu fungsi. Fungsi yang dihadapi dapat
+merepresentasikan berbagai hal, seperti fungsi biaya dalam ekonomi,
+permukaan potensial dalam fisika, atau fungsi matematika kompleks
+lainnya. Prinsip dasar dari algoritma \emph{gradient descent} adalah
+mengikuti arah di mana gradien (atau turunan) dari fungsi tersebut
+menunjukkan penurunan atau kenaikan paling cepat.
+
+Konsep ini mirip dengan mencari lembah (minimum) atau puncak (maksimum)
+dalam topografi fungsi matematika. Dalam algoritma \emph{gradient
+descent}, titik awal dipilih, dan kemudian perlahan-lahan bergerak
+menuju minimum atau maksimum dengan mengikuti arah penurunan atau
+kenaikan gradien. Proses ini dilakukan secara iteratif hingga ditemukan
+minimum atau maksimum yang diinginkan.
+
+Algoritma \emph{gradient descent} memiliki berbagai variasi, termasuk
+metode \emph{steepest descent}, metode \emph{conjugate gradient}, dan
+lainnya, yang digunakan tergantung pada konteks dan sifat fungsi yang
+dianalisis. Ini adalah alat matematis penting dalam optimisasi dan
+digunakan dalam berbagai bidang matematika dan ilmu terapan untuk
+menyelesaikan masalah optimisasi.
+%
+\begin{definisi}
+    Berdasarkan Bishop\citep*{Bishop2006}, Persamaan utama dari algoritma \emph{gradient
+descent} dinyatakan sebagai berikut:
+\begin{equation}\label{updateBobot}
+    \theta_{t + 1}\  = \ \theta_{t}\  - \ \alpha\ \nabla J\left( \theta_{t} \right)
+\end{equation}
+\end{definisi}
+
+Di sini, $\theta$ mewakili parameter yang sedang dioptimalkan, \(\alpha\)
+(alpha) mengindikasikan tingkat pembelajaran, yang mengendalikan ukuran
+langkah, dan\(\ \nabla J\left( \theta_{t} \right)\) mewakili gradien
+dari fungsi biaya atau kerugian yang berkaitan dengan parameter pada
+iterasi saat ini \(t\). Persamaan ini menangkap aturan pembaruan
+fundamental dalam algoritma \emph{gradient descent}, dimana parameter
+disesuaikan untuk meminimalkan fungsi biaya.
+
+Pada PMLE, estimasi parameter (\(\beta)\) didapatkan dengan minimalkan
+fungsi biayanya \(\left( \min{l(y;\beta)}\  \right)\). Karena fungsi
+logaritma natural adalah fungsi naik, sehingga fungsi biayanya tersebut
+menjadi penjumlahan fungsi negatif \emph{log-likelihood} dan fungsi
+penaltinya, atau ditulis sebagai:
+
+\begin{equation}\label{objektifPenalty}
+    \min_{\beta}{l(y;\beta)} = - \ln{L(y;\beta)} + penalty(\beta;\lambda)
+\end{equation}
+Untuk memperoleh nilai minimum dari fungsi biaya tersebut, dapat
+diperoleh melalui turunan pertama jika,
+\begin{equation}
+    \frac{\partial\left( l(y;\beta) \right)}{\partial\beta} = 0
+\end{equation}
+Dengan,
+\begin{equation}\label{turunanParsial2}
+    \frac{\partial\left( l(y;\beta) \right)}{\partial\beta} = - \frac{\partial\left( \ln{L(y;\beta)} \right)}{\partial\beta} + \frac{\partial\left( penalty(\beta;\lambda) \right)}{\partial\beta}
+\end{equation}
+Sehingga untuk mengestimasi parameter \(\beta\) dengan algoritma
+\emph{gradient descent} dapat dihitung sebagai berikut:
+\begin{equation}
+    \beta_{i}^{(t + 1)} = \beta_{i}^{(t)} - \alpha \cdot \frac{\partial\left( l\left( y;\beta^{(t)} \right) \right)}{\partial\beta^{(t)}}
+\end{equation}
+Keterangan:\\
+\(\beta^{(t)}\) = estimasi parameter PMLE pada iterasi ke-\emph{t} \\
+\(\alpha =\) besar langkah pergerakan penurunan \emph{gradient} \\
+\(l(y;\beta) =\) fungsi biaya \\
+%
+\section{Tabel klasifikasi}
+Sebuah tabel klasifikasi atau yang lebih dikenal sebagai matriks konfusi
+adalah matriks yang merangkum kinerja klasifikasi dari sebuah model
+dengan mengacu pada beberapa data uji. Matriks tersebut menunjukkan
+berapa banyak prediksi yang benar dan salah per kelas, yang membantu
+dalam memahami kinerja model. Kasus khusus dari tabel klasifikasi sering
+digunakan dengan dua kelas, salah satunya ditetapkan sebagai kelas
+positif dan yang lainnya sebagai kelas negatif. Dalam konteks ini, empat
+sel matriks tersebut ditandai sebagai \(true\ positives\) (TP),
+\(false\ positives\) (FP), \(true\ negatives\) (TN), dan
+\(false\ negatives\) (FN). Sejumlah ukuran kinerja klasifikasi
+didefinisikan dalam hal empat sel ini, seperti akurasi, presisi, recall,
+dan skor F1. Tabel klasifikasi sangat berguna ketika dataset tidak
+seimbang, dan akurasi saja tidak cukup untuk mengevaluasi kinerja model.
+
+Tabel klasifikasi adalah cara yang ringkas dan terstruktur untuk
+mendapatkan informasi lebih mendalam tentang suatu pengklasifikasi, yang
+dihitung dengan memetakan hasil yang diharapkan (atau sebenarnya) ke
+hasil yang diprediksi oleh model. Ini memberikan banyak informasi
+tentang kinerja model, seperti jumlah TP, FP, FN, dan TN. Paket
+scikit-learn dalam bahasa pemrograman Python mengandung semua alat untuk
+menghitung tabel klasifikasi, dan dapat diperoleh dengan menggunakan
+fungsi "confusion\_matrix" dan memasukkan distribusi label sebenarnya
+dan distribusi label yang diprediksi sebagai argumen. Tabel klasifikasi
+tidak terbatas pada klasifikasi biner dan dapat digunakan dalam
+pengklasifikasi multikelas juga.
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{ p{5cm} c c  }
+        \hline
+        Kelas Prediksi / Kelas Aktual & positif & negatif \\ [1ex]
+        \hline
+        positif & TP & FP \\
+%        \hline
+        negatif & FN & TN \\ [1ex]
+        \hline
+    \end{tabular}
+    \caption{Tabel klasifikasi biner atau dua kelas}
+    \label{tabel:1}
+\end{table}
+
+%\begin{longtable}[]{@{}
+%>{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.1410}}
+%>{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.1697}}
+%>{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.3545}}
+%>{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.3348}}@{}}
+%\toprule()
+%\begin{minipage}[b]{\linewidth}\raggedright
+%\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+%\end{minipage} &
+%\multicolumn{2}{>{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.6893} + 2\tabcolsep}@{}}{%
+%\begin{minipage}[b]{\linewidth}\raggedright
+%\textbf{Kelas Aktual}
+%\end{minipage}} \\
+%\midrule()
+%\endhead
+%& & \(\mathbf{positif}\) & \(\mathbf{negatif}\) \\
+%\multirow{2}{*}{\(\mathbf{Kelas}\)
+%
+%\(\mathbf{Prediksi}\)} & \(\mathbf{positif}\) & \(TP\) & \(FP\) \\
+%& \(\mathbf{negatif}\) & \(FN\) & \(TN\) \\
+%\bottomrule()
+%\end{longtable}
+%
+%Tabel 1. Tabel klasifikasi Dua kelas
+%
+%\begin{longtable}[]{@{}
+%>{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1008}}
+%>{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2123}}
+%>{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2062}}
+%>{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2062}}
+%>{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0620}}
+%>{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2123}}@{}}
+%\toprule()
+%\begin{minipage}[b]{\linewidth}\raggedright
+%\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+%\end{minipage} &
+%\multicolumn{4}{>{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.6869} + 6\tabcolsep}@{}}{%
+%\begin{minipage}[b]{\linewidth}\raggedright
+%\[\mathbf{Kelas\ Aktual/observasi}\]
+%\end{minipage}} \\
+%\midrule()
+%\endhead
+%& & \(\mathbf{Kelas - 1}\) & \(\mathbf{Kelas - 2}\) &
+%\(\mathbf{\ldots}\) & \(\mathbf{Kelas - N}\) \\
+%\multirow{4}{*}{\(\mathbf{Kelas\ Prediksi}\)} & \(\mathbf{Kelas - 1}\) &
+%\(f_{11}\) & \(f_{12}\) & \(\ldots\) & \(f_{1n}\) \\
+%& \(\mathbf{Kelas - 2}\) & \(f_{21}\) & \(f_{22}\) & \(\ldots\) &
+%\(f_{2n}\) \\
+%& \(\mathbf{\vdots}\) & \(\vdots\) & \(\vdots\) & \(\ddots\) &
+%\(\vdots\) \\
+%& \(\mathbf{Kelas - N}\) & \(f_{n1}\) & \(f_{n2}\) & \(\ldots\) &
+%\(f_{nn}\) \\
+%\bottomrule()
+%\end{longtable}
+%
+%Tabel 2. Tabel klasifikasi Multi-Kelas
+%
+%Perhitungan nilai \(TP,\ FP,\ FN,\ \)dan \(TN\) untuk kelas ke-\(n\)
+%pada tabel klasifikasi multi-kelas adalah sebagai berikut:
+%
+%\[{TP_{n} = f_{nn}\
+%}{FP_{n} = \sum_{j = 1,j \neq n}^{N}f_{nj}
+%}{FN_{n} = \sum_{j = 1,j \neq n}^{N}f_{jn}
+%}{TN_{n} = \sum_{i = 1}^{N}\left( \sum_{j = 1}^{N}f_{ij}\  \right) - (TP_{n} + FP_{n} + FN_{n})}\]
+%
+%\begin{quote}
+%\textbf{Akurasi}
+%
+%Akurasi adalah sebuah angka yang menyatakan jumlah benar dari prediksi
+%yang diprediksikan oleh sebuah model dengan rumus:
+%\end{quote}
+%
+%\[\begin{matrix}
+%Akurasi = \frac{\sum_{i = 1}^{N}f_{ii}}{\sum_{i = 1}^{N}{\sum_{j = 1}^{N}f_{ij}}} \\
+%\end{matrix}\]
+%
+%\[atau\]
+%
+%\[Akurasi = \frac{\sum_{i = 1}^{N}{TP_{i}}}{\sum_{i = i}^{N}{TP_{i}} + \sum_{i = i}^{N}{FP_{i}} + \sum_{i = i}^{N}{FN_{i}} + \sum_{i = i}^{N}{TN_{i}}}\]
+%
+%\textbf{\hfill\break
+%}
+%
+%\begin{enumerate}
+%\def\labelenumi{\Alph{enumi}.}
+%\setcounter{enumi}{9}
+%\item
+%\begin{quote}
+%\textbf{METODOLOGI PENELITIAN}
+%\end{quote}
+%\end{enumerate}
+%
+%\begin{enumerate}
+%\def\labelenumi{\arabic{enumi}.}
+%\item
+%\textbf{Studi Pustaka}
+%\end{enumerate}
+%
+%\begin{quote}
+%Mengumpulkan berbagai sumber literatur yang berhubungan dengan MLE,
+%\emph{gradient descent,} regularisasi, dan regresi logistik multinomial.
+%\end{quote}
+%
+%\begin{enumerate}
+%\def\labelenumi{\arabic{enumi}.}
+%\setcounter{enumi}{1}
+%\item
+%\textbf{Mengumpulkan Data}
+%\end{enumerate}
+%
+%\begin{quote}
+%Mengumpulkan beberapa data dengan variabel respon berjenis multinomial
+%dari beberapa sumber.
+%\end{quote}
+%
+%\begin{enumerate}
+%\def\labelenumi{\arabic{enumi}.}
+%\setcounter{enumi}{2}
+%\item
+%\textbf{Membangun Model Regresi Logistik dengan MLE}
+%\end{enumerate}
+%
+%\begin{quote}
+%Membangun model regresi logistik dengan MLE\emph{.}
+%\end{quote}
+%
+%\begin{enumerate}
+%\def\labelenumi{\arabic{enumi}.}
+%\setcounter{enumi}{3}
+%\item
+%\textbf{Membangun Model Regresi Logistik dengan PMLE}
+%\end{enumerate}
+%
+%\begin{quote}
+%Membangun model regresi logistik dengan metode PMLE \emph{Gradient
+%descent.}
+%\end{quote}
+%
+%\begin{enumerate}
+%\def\labelenumi{\arabic{enumi}.}
+%\setcounter{enumi}{4}
+%\item
+%\textbf{Evaluasi Model}
+%\end{enumerate}
+%
+%\begin{quote}
+%Mengevaluasi model-model yang sudah dibangun dengan membandingkan
+%akurasi.
+%\end{quote}
+%
+%\begin{enumerate}
+%\def\labelenumi{\arabic{enumi}.}
+%\setcounter{enumi}{5}
+%\item
+%\textbf{Kesimpulan dan Saran}
+%\end{enumerate}
+%
+%\begin{quote}
+%Mencatat hasil kesimpulan dan saran \textbf{\hfill\break
+%}
+%\end{quote}
+
+
+
+% \section{Definisi dan Teorema}
+% Untuk menuliskan definisi dan teorema, perhatikan cara berikut.
+% \begin{definisi}[Kreyszig, 1978, Transformasi Linear]$\;$\\
+% 	 Misalkan $V$ dan $W$ ruang vektor real. Transformasi linear $T$ dari $V$ ke $W$ merupakan fungsi $T: V\to W$ sedemikian sehingga untuk setiap $x,y\in V$ dan $k\in \mathbb{R}$ berlaku
+% 	\begin{enumerate}
+% 		\item $T(x+y)=T(x)+T(y)$,
+% 		\item $T(kx)=kT(x).$
+% 	\end{enumerate}
+% \end{definisi}
+% \begin{lemma}
+%     Jika $n$ bilangan prima dan $n|ab$, maka $n|a$ atau $n|b$.
+% \end{lemma}
+% \begin{teorema}
+%     Jika $n$ bilangan prima dan $n|ab$, maka $n|a$ atau $n|b$.
+% \end{teorema}
+% \begin{proposisi}
+%     Jika $n$ bilangan prima dan $n|ab$, maka $n|a$ atau $n|b$.
+% \end{proposisi}
+% \begin{akibat}
+%     Jika $n$ bilangan prima dan $n|ab$, maka $n|a$ atau $n|b$.
+% \end{akibat}
+% \begin{contoh}
+%     Jika $n$ bilangan prima dan $n|ab$, maka $n|a$ atau $n|b$.
+% \end{contoh}
+% %+++++++++++++++++++++++++++++
+% \newpage
+% \section{Tabel dan Gambar}
+% Untuk membuat gambar, perhatikan cara berikut.
+% \begin{figure}[htbp]
+%     \centering
+%     \includegraphics[scale=0.2]{Gambar/LogoUB.png}
+%     \caption{Logo Universitas Brawijaya}
+%     \label{fig:enter-label}
+% \end{figure}\\
+% Kemudian untuk membuat tabel, perhatikan cara berikut.
+% \begin{table}[htbp]
+%     \centering
+%     \begin{threeparttable}
+%         \caption{Operasi perkalian pada $(\mathbb{Z}_6,+)$}
+%         \begin{tabular}{|c|c|c|c|c|c|c|}
+% 				\hline
+% 				$\cdot$          & $\overline{0}$ & $\overline{1}$ & $\overline{2}$ & $\overline{3}$ & $\overline{4}$ & $\overline{5}$ \\ \hline
+% 				$\overline{0}$ & $\overline{0}$ & $\overline{0}$ & $\overline{0}$ & $\overline{0}$ & $\overline{0}$ & $\overline{0}$ \\ \hline
+% 				$\overline{1}$ & $\overline{0}$ & $\overline{1}$ & $\overline{2}$ & $\overline{3}$ & $\overline{4}$ & $\overline{5}$ \\ \hline
+% 				$\overline{2}$ & $\overline{0}$ & $\overline{2}$ & $\overline{4}$ & $\overline{0}$ & $\overline{2}$ & $\overline{4}$ \\ \hline
+% 				$\overline{3}$ & $\overline{0}$ & $\overline{3}$ & $\overline{0}$ & $\overline{3}$ & $\overline{0}$ & $\overline{3}$ \\ \hline
+% 				$\overline{4}$ & $\overline{0}$ & $\overline{4}$ & $\overline{2}$ & $\overline{0}$ & $\overline{4}$ & $\overline{2}$ \\ \hline
+% 				$\overline{5}$ & $\overline{0}$ & $\overline{5}$ & $\overline{4}$ & $\overline{3}$ & $\overline{2}$ & $\overline{1}$ \\ \hline
+% 			\end{tabular}
+%     \end{threeparttable}
+% \end{table} 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
