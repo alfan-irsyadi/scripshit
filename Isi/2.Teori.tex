@@ -5,12 +5,7 @@
 \thispagestyle{empty}
 \onehalfspacing
 
-\hspace{\parindent}\lipsum[2]
-
-
-\section{Regresi Logistik}
-Regresi Logistik adalah regresi dengan variabel respon berskala kategorik
-(nominal atau ordinal). Regresi logistik terbagi atas regresi logistik biner, regresi
+\hspace{\parindent}\lipsum[2]terbagi atas regresi logistik biner, regresi
 logistik multinomial, serta regresi logistik ordinal. Regresi logistik biner adalah
 regresi logistik dengan variabel respon berskala nominal dua kategori. Regresi
 logistik multinomial adalah regresi logistik dengan variabel respon berskala
@@ -208,7 +203,15 @@ efektif melakukan seleksi pada variabel prediktor. Istilah
 regularisasi\(\ L_{1}\) direpresentasikan sebagai:
 
 \begin{equation}\label{penaltyL1}
-    Penalty\left( \beta_{i},\ \lambda \right) = \lambda\sum_{i = 1}^{n}\left| \beta_{i} \right|
+    Penalty\left( \beta,\ \lambda \right) = \lambda\sum_{i = 1}^{n}\left| \beta_{i} \right|
+\end{equation}
+
+dengan
+\begin{equation}
+	\frac{\partial\left(Penalty(\beta, \lambda) \right)}{\partial\beta_i} = \begin{cases}
+		\lambda, & \text{untuk} \beta_i > 0 \\
+		-\lambda, & \text{untuk} \beta_i\leq 0
+	\end{cases}
 \end{equation}
 
 Di sini, \(\lambda\) mengontrol kekuatan regularisasi, dan \(\beta_{i}\)

@@ -1,0 +1,49 @@
+\begin{thebibliography}{xx}
+
+\harvarditem{Agresti}{2013}{Agresti2013}
+Agresti, A.  \harvardyearleft 2013\harvardyearright , {\em Categorical Data
+  Analysis}, 3 edn, John Wiley and Sons.
+
+\harvarditem{Allen \harvardand\ Frisch}{1935}{Allen1935}
+Allen, R. G.~D. \harvardand\ Frisch, R.  \harvardyearleft 1935\harvardyearright
+  , `Statistical confluence analysis by means of complete regression systems',
+  {\em Econ. J. (London)} {\bf 45},~741.
+
+\harvarditem{Bishop}{2006}{Bishop2006}
+Bishop, C.~M.  \harvardyearleft 2006\harvardyearright , {\em Pattern
+  Recognition and Machine Learning (Information Science and Statistics)},
+  Springer-Verlag.
+
+\harvarditem{Firth}{1993}{Firth1993}
+Firth, D.  \harvardyearleft 1993\harvardyearright , `Bias reduction of maximum
+  likelihood estimates', {\em Biometrika} {\bf 80},~27--38.
+
+\harvarditem[Hastie et~al.]{Hastie, Tibshirani \harvardand\
+  Friedman}{2009}{Hastie2009}
+Hastie, T., Tibshirani, R. \harvardand\ Friedman, J.  \harvardyearleft
+  2009\harvardyearright , {\em The elements of statistical learning}, Springer
+  New York.
+
+\harvarditem{Hosmer \harvardand\ Lemeshow}{2000}{Hosmer2000}
+Hosmer, D.~W. \harvardand\ Lemeshow, S.  \harvardyearleft 2000\harvardyearright
+  , {\em Applied Logistic Regression}, Wiley.
+
+\harvarditem{Lee}{2020}{Lee2020}
+Lee, S.  \harvardyearleft 2020\harvardyearright , `Logistic regression
+  procedure using penalized maximum likelihood estimation for differential item
+  functioning', {\em J. Educ. Meas.} {\bf 57},~443--457.
+
+\harvarditem[Malau et~al.]{Malau, Sawaluddin, Sutarman \harvardand\
+  Joseph}{2023}{Malau2023}
+Malau, T.~L., Sawaluddin, Sutarman \harvardand\ Joseph, T.  \harvardyearleft
+  2023\harvardyearright , `Analisis metode logistik regresi ensemble untuk
+  klasifikasi dengan pra-pemrosesan menggunakan principal component analysis',
+  {\em IJM: Indonesian Journal of Multidisciplinary} {\bf 1},~707–722.
+\newline\harvardurl{https://journal.csspublishing.com/index.php/ijm/article/view/190}
+
+\harvarditem{Shedriko}{2021}{Shedriko2021}
+Shedriko, S.  \harvardyearleft 2021\harvardyearright , `Binary logistic
+  regression in determining affecting factors student graduation in a subject',
+  {\em JURNAL TEKNOLOGI DAN OPEN SOURCE} {\bf 4},~114--120.
+
+\end{thebibliography}
